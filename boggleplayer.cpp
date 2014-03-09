@@ -1,4 +1,5 @@
-#include "iboggleplayer.cpp"
+#include "BOGGLEPLAYER_H"
+#include "BOGGLEUTIL_H"
 
 virtual void buildLexicon(const vector<string>& word_list)=0;{
 	vector<string>::iterator vit = v.begin();
@@ -60,7 +61,18 @@ bool search(string word){
 	return current->is_end; 
 }
 
-virtual void setBoard(unsigned int rows, unsigned int cols, string** diceArray) = 0;
+virtual void setBoard(unsigned int rows, unsigned int cols, string** diceArray) = 0;{
+	vector<vector<pair<int,bool>>> graph;
+
+	for(int i = 0; i < rows i++ ){
+		vector<pair<int,bool>> index ;
+		for(int j = 0; j< cols ; j++, k++ ){
+			getneighbors(rows, cols, i, j, index, diceArray);
+		}
+	graph.push_back(index);
+	}
+
+}
 virtual bool getAllValidWords(unsigned int minimum_word_length, set<string>* words) = 0;
 virtual bool isInLexicon(const string& word_to_check) = 0;
 virtual vector<int> isOnBoard(const string& word_to_check) = 0;
