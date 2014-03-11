@@ -28,6 +28,7 @@ private:
 *  Takes in a string and inserts it into the trie 
 */
 void insert(string word);
+void rSearch();
 /**
 *  Function will be used as a helper function for the buildLexicon function. 
 *  Takes in a string and determines if the string is located in the trie. Returns
