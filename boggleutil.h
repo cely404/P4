@@ -5,19 +5,35 @@
 #include <set>
 #include <vector>
 #include <string>
+#include <utility>
+#include <iterator>
 
 using std::vector;
 using std::set;
 using std::string;
+using std::pair;
+
+class Trie{
+
+  private:
+   // int x=0;
+
+  
+  public:
+    //"trie node index class"
+    struct TrieNode{
+      bool isEnd;
+      struct TrieNode* childIndex[26];
+    }*root;
 
 
-class boggleutil {
 
-public:				
-void getneighbors(int rows, int cols, int i, int j,
-	vector<pair<int, bool>> &vec, string** diceArray);
+    //struct TrieNodeIndex *root = new TrieNodeIndex[26]; 
 
-private:
+    Trie();
+
+    bool search(string word);
+    void insert(string word);
 
 }; 
 #endif //BOGGLEUTIL_H

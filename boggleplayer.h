@@ -1,28 +1,23 @@
 
 #ifndef BOGGLEPLAYER_H
 #define BOGGLEPLAYER_H
-
-
-#include "iboggleplayer.h"
-#include <set>
+#include <utility>
 #include <vector>
 #include <string>
+#include "boggleutil.h"
 
-using std::vector;
-using std::set;
 using std::string;
+using std::pair;
+using std::vector;
+class iboggleplayer;
 
 
-class boggleplayer public iboggleplayer{
+class boggleplayer{
 
 public:
-struct alphanode{
-	bool present = false;
-    bool is_end = false;
-    struct * structptr = nullptr; 
-  };
-
+Trie* root=0; 
 private:
+<<<<<<< HEAD
 /**
 *  Function will be used as a helper function for the buildLexicon function. 
 *  Takes in a string and inserts it into the trie 
@@ -36,6 +31,8 @@ void rSearch();
 */ 
 bool search(string word);
 alphanode root = nullptr;
+=======
+>>>>>>> d0625106fe10e37ea8e7de03cb240d4f5f872507
 
 };
 #endif // BOGGLEPLAYER_H

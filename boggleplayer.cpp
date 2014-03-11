@@ -1,80 +1,62 @@
-#include "BOGGLEPLAYER_H"
-#include "BOGGLEUTIL_H"
+#include "boggleplayer.h"
 
-virtual void buildLexicon(const vector<string>& word_list)=0;{
-	vector<string>::iterator vit = v.begin();
-	vecotr<string>::iteraotr ven = v.end(); 
+void buildLexicon(const vector<string>& word_list){
+        Trie* lex = new Trie();
+	vector<string>::const_iterator vit = word_list.begin();
+	vector<string>::const_iterator ven = word_list.end(); 
 	for(; vit != ven; vit++)
-		insert(*vit);
+		lex->insert(*vit);
 
 }
-/**
- *  Function will be used as a helper function for the buildLexicon function. 
- *  Takes in a string and inserts it into the trie which will use an array of structs
- *  as its backing structure 
- */
-void insert(string word){
-	if(word == nullptr || word.size() > 16 )
-		return;
-	alphanode * current = root; 
-	int i = 0; 
 
-	/**
- 	 * Case where root is null/empty trie 
- 	 */
-	if(!root){
-		alphanode* root = malloc(26 * sizeof(*alphanode);
-		current =  root;
-		root[(int)word[i]-97]->present = true;
-		i++;
-	}
+void setBoard(unsigned int rows, unsigned int cols, string** diceArray){
+	vector<vector<pair<string,bool>>> graph;
 
-	for(; i<word.size(); i++){
-		if( current[((int)word[i]-97)]->present = false ){
-			alphanode node = new alphanode();
-			current->structpr=node; 		
-			node[(int)word[i]-97]->present = true;
-			current = node;
+	for(int i = 0; i < (int)rows ;i++ ){
+		vector<pair<string,bool>> vec ;
+		for(int j = 0; j< (int)cols ; j++ ){
+		   vec.push_back(std::make_pair(diceArray[i][j], false));
+
+
+	if((i-1>=0) && (j-1>=0) && (i-1<(int)rows) && (j-1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i-1][j-1], false));
+
+
+	if((i-1>=0) && (i-1<(int)rows))
+		vec.push_back(std::make_pair(diceArray[i-1][j], false));
+
+
+	if((i-1>=0) && (j+1>=0) && (i-1<(int)rows) && (j+1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i-1][j+1], false));
+
+
+	if((j-1>=0) && (j-1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i][j-1], false));
+
+
+	if((j+1>=0) && (j+1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i][j+1], false));
+
+
+	if((i+1>=0) && (j-1>=0) && (i+1<(int)rows) && (j-1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i+1][j-1], false));
+
+
+	if((i+1>=0) && (i+1<(int)rows))
+		vec.push_back(std::make_pair(diceArray[i+1][j], false));
+
+	if((i+1>=0) && (j+1>=0) && (i+1<(int)rows) && (j+1<(int)cols))
+		vec.push_back(std::make_pair(diceArray[i+1][j+1], false));
 		}
-	}
-	current->is_end = true; 
-	return; 
-}
-
-/**
- *  Function will be used as a helper function for the buildLexicon function. 
- *  Takes in a string and determines if the string is located in the trie. Returns
- *  true if string present and false otherwise 
- */ 
-bool search(string word){
-	if(word == nullptr)
-		return false; 
-
-	alphanode * current = root; 
-	for(int i=0; i < word.size(); i++){
-		if( !current[word[i]-97]->present )
-			return false; 
-		if(current->structptr == nullptr)
-			return false; 
-		current = current->structpr; 	
-	}
-	return current->is_end; 
-}
-
-virtual void setBoard(unsigned int rows, unsigned int cols, string** diceArray) = 0;{
-	vector<vector<pair<int,bool>>> graph;
-
-	for(int i = 0; i < rows i++ ){
-		vector<pair<int,bool>> index ;
-		for(int j = 0; j< cols ; j++, k++ ){
-			getneighbors(rows, cols, i, j, index, diceArray);
-		}
-	graph.push_back(index);
+	graph.push_back(vec);
 	}
 
 }
-virtual bool getAllValidWords(unsigned int minimum_word_length, set<string>* words) = 0;
-virtual bool isInLexicon(const string& word_to_check) = 0;
-virtual vector<int> isOnBoard(const string& word_to_check) = 0;
-virtual void getCustomBoard(string** &new_board, unsigned int *rows, unsigned int *cols) = 0;
-virtual ~IBogglePlayer() {}
+
+bool getAllValidWords(unsigned int minimum_word_length, set<string>* words){return false;}
+bool isInLexicon(const string& word_to_check){return false;}
+vector<int> isOnBoard(const string& word_to_check){
+vector<int> one; 
+return one;}
+void getCustomBoard(string** &new_board, unsigned int *rows, unsigned int *cols){}
+
