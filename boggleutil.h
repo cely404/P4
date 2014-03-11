@@ -13,10 +13,21 @@ using std::set;
 using std::string;
 using std::pair;
 
-
 class Trie{
+
+private:
+int x=0; 
 public:
-   Trie();
+	/**
+     * Constructor for the Trie class
+     */ 
+    struct container{
+    	bool present=false;
+    	bool is_end=false;
+    	struct node* ptr[26];
+   }*node;
+
+   void initialize();
    bool search(string word);
    void insert(string word);
 
