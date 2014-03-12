@@ -5,34 +5,25 @@
 #include <vector>
 #include <string>
 #include "boggleutil.h"
+#include "iboggleplayer.h"
 
 using std::string;
 using std::pair;
 using std::vector;
-class iboggleplayer;
 
 
-class boggleplayer{
+class BogglePlayer: public IBogglePlayer{
 
 public:
-Trie* root=0; 
+ void buildLexicon(const vector<string>& word_list);
+ void setBoard(unsigned int rows, unsigned int cols, string** diceArray);
+ bool getAllValidWords(unsigned int minimum_word_length, set<string>* words);
+  bool isInLexicon(const string& word_to_check);
+  vector<int> isOnBoard(const string& word_to_check);
+  void getCustomBoard(string** &new_board, unsigned int *rows, unsigned int *cols);
+
+
 private:
-<<<<<<< HEAD
-/**
-*  Function will be used as a helper function for the buildLexicon function. 
-*  Takes in a string and inserts it into the trie 
-*/
-void insert(string word);
-void rSearch();
-/**
-*  Function will be used as a helper function for the buildLexicon function. 
-*  Takes in a string and determines if the string is located in the trie. Returns
-*  true if string present and false otherwise 
-*/ 
-bool search(string word);
-alphanode root = nullptr;
-=======
->>>>>>> d0625106fe10e37ea8e7de03cb240d4f5f872507
 
 };
 #endif // BOGGLEPLAYER_H

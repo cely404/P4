@@ -17,23 +17,33 @@ class Trie{
 
   private:
    // int x=0;
-
+  
   
   public:
-    //"trie node index class"
+    //"trie node class"
     struct TrieNode{
       bool isEnd;
       struct TrieNode* childIndex[26];
     }*root;
 
-
-
-    //struct TrieNodeIndex *root = new TrieNodeIndex[26]; 
-
     Trie();
-
     bool search(string word);
     void insert(string word);
 
 }; 
+
+
+
+
+/*
+
+    class TrieNode(){
+      bool isEnd;
+      char letter;
+      TrieNode** childIndex[26];
+
+      TrieNode(char letter) : letter(letter){ }
+    }
+*/
+
 #endif //BOGGLEUTIL_H

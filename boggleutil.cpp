@@ -1,63 +1,102 @@
 #include "boggleutil.h"
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+
 
 /**
- *  Function will be used as a helper function for the buildLexicon 
- *  function.Takes in a string and inserts it into the trie which will 
- *  use an array of structs as its backing structure 
+ * Constructor initializes root to null
+ *
+ */
+Trie::Trie(){
+  root = new TrieNode;
+  root->isEnd = false;
+  //initialize null array
+  for(int i=0; i<26; i++){
+    delete root->childIndex[i];
+    root->childIndex[i]=NULL;
+  }
+}
+
+
+
+
+/**
+ *  Helper function for buildLexicon. Takes in a string and inserts it into  *  the trie which is made up struct TrieNodes 
  */
 void Trie::insert(string word){
+  
   if(word.empty())
-  return;
+    return;
 
-  struct container *current[26];
-  int i = 0; 
-
-  /**
-   * Case where root is null/empty trie 
-   */
-  if(!x){
-    struct container curr = new container[26];
-	  curr[(int)word[i]-97]->present = true;
- 	  root = curr; 
-	  i++;
-	  this->x=1;
+  //make sure word to be inserted is valid
+  for(int i=0; i < (int)word.size(); i++ ){
+     if(word[i]<97 || word[i]>122)
+     return; 
   }
-  current = root; 
 
-  for(; i<word.size(); i++){
-    if( current[((int)word[i]-97)]->present = false ){
-	   Trie child = new Trie[26];
-	   current->ptr=child; 		
-     child[(int)word[i]-97]->present = true;
-    }
-	  current = child;
+  struct TrieNode *current = root;  
+
+  //loop through the word and create a trie for each child needed
+  for(int i=0; i<(int)word.size(); i++){
+    //create child for previously unassigned letter
+    if (current != NULL){
+      if( current->childIndex[((int)word[i]-97)] == NULL ){
+
+        struct TrieNode *child = new TrieNode;
+        current->childIndex[((int)word[i]-97)]=child; 
+        current = child;
+		
+      }else{
+        current=current->childIndex[(int)word[i]-97];
       }
-   current->is_end = true; 
-   return; 
-   }
+    }
+  }
+  
+  //end of a word is reached
+  current->isEnd = true; 
+  return; 
+}
 
-   /**
-    *  Function will be used as a helper function for the buildLexicon 
-    *  function. Takes in a string and determines if the string is located 
-    *  in the trie. Returns true if string present and false otherwise 
-    */ 
-   bool Trie::search(string word){
-      if(word.empty())
+
+
+
+
+/**
+ *  Helper function for buildLexicon. Takes in a string and determines if
+ *  the string is located in the trie. 
+ *  Returns true if string present and false otherwise 
+ */ 
+bool Trie::search(string word){
+
+  if(word.empty() || word.compare(""))
+    return false; 
+
+  TrieNode *current = root; 
+
+  for(int i=0; i < (int)word.size(); i++){
+
+     if(word[i]<97 || word[i]>122)
+        return false; 
+
+     if (current != NULL){
+
+       if(current->childIndex==NULL)
          return false; 
 
-      Trie *current = root; 
-      for(int i=0; i < word.size(); i++){
-         if( !current[word[i]-97]->present )
-            return false; 
-         if(current->ptr == 0 && !(current->end))
-	    return false; 
-	 current = current->ptr; 	
-      }
-      return current->is_end; 
-   }
+       if(current->childIndex[(int)word[i]-97] == NULL)
+  	 return false;
 
-
+       current = current->childIndex[(int)word[i]-97]; 	
+     }
+  }
+  return current->isEnd; 
 }
+
+
+
 
 
 
