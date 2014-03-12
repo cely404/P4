@@ -7,10 +7,10 @@ using namespace std;
 
 
 /**
- * Constructor initializes root to null
- *
+ * Constructor initializes root's properties to false and null
  */
 Trie::Trie(){
+
   root = new TrieNode;
   root->isEnd = false;
   //initialize null array
@@ -18,9 +18,8 @@ Trie::Trie(){
     delete root->childIndex[i];
     root->childIndex[i]=NULL;
   }
+
 }
-
-
 
 
 /**
@@ -37,7 +36,9 @@ void Trie::insert(string word){
      return; 
   }
 
-  struct TrieNode *current = root;  
+  TrieNode *current = root;  
+
+  
 
   //loop through the word and create a trie for each child needed
   for(int i=0; i<(int)word.size(); i++){
@@ -45,7 +46,7 @@ void Trie::insert(string word){
     if (current != NULL){
       if( current->childIndex[((int)word[i]-97)] == NULL ){
 
-        struct TrieNode *child = new TrieNode;
+        TrieNode *child = new TrieNode();
         current->childIndex[((int)word[i]-97)]=child; 
         current = child;
 		
@@ -70,15 +71,14 @@ void Trie::insert(string word){
  *  Returns true if string present and false otherwise 
  */ 
 bool Trie::search(string word){
-
-  if(word.empty() || word.compare(""))
+  if(word.empty())
     return false; 
 
   TrieNode *current = root; 
 
   for(int i=0; i < (int)word.size(); i++){
 
-     if(word[i]<97 || word[i]>122)
+     if((int)word[i]<97 || (int)word[i]>122)
         return false; 
 
      if (current != NULL){

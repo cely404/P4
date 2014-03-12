@@ -8,22 +8,23 @@ using namespace std;
  */
 int main() {
 
-  //create a trie player to perform tests on
+  //create a trie player to p15
+  //erform tests on
   Trie *trie = new Trie();
  
   //insert some words with prefixes
   trie->insert("dog");
- /* trie->insert("dogged");
+  trie->insert("dogged");
   trie->insert("dogmatic");
   trie->insert("ass");
   trie->insert("assert");
   trie->insert("ship");
   trie->insert("shipped");
-*/
+
 
   //test valid words
   assert(trie->search("dog"));
- /* assert(trie->search("dogmatic"));
+  assert(trie->search("dogmatic"));
   assert(trie->search("shipped"));
   assert(trie->search("assert"));
   assert(trie->search("dogged"));
@@ -66,7 +67,7 @@ int main() {
   assert(! trie->search(" "));
   assert(! trie->search("d"));
   assert(! trie->search("dog "));
-  assert(! trie->search(" ship"));*/
+  assert(! trie->search(" ship"));
   cout << "All tests passed" << endl;
 
 

@@ -1,5 +1,5 @@
 #ifndef BOGGLEUTIL_H
-#define BOGGLEPUTIL_H
+#define BOGGLEUTIL_H
 
 
 #include <set>
@@ -13,19 +13,33 @@ using std::set;
 using std::string;
 using std::pair;
 
+class TrieNode{
+
+public:
+
+  bool isEnd;
+  TrieNode* childIndex[26];
+
+  TrieNode(){
+    isEnd = false;
+    for (int i = 0; i < 25; i++){ 
+      childIndex[i] = NULL;
+    }
+  } 
+
+};
+
+
+
 class Trie{
 
   private:
-   // int x=0;
   
+  protected:
+
+    TrieNode* root;
   
   public:
-    //"trie node class"
-    struct TrieNode{
-      bool isEnd;
-      struct TrieNode* childIndex[26];
-    }*root;
-
     Trie();
     bool search(string word);
     void insert(string word);
@@ -34,16 +48,5 @@ class Trie{
 
 
 
-
-/*
-
-    class TrieNode(){
-      bool isEnd;
-      char letter;
-      TrieNode** childIndex[26];
-
-      TrieNode(char letter) : letter(letter){ }
-    }
-*/
 
 #endif //BOGGLEUTIL_H
