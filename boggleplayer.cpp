@@ -20,8 +20,10 @@ void BogglePlayer::setBoard(unsigned int rows, unsigned int cols,
   vector< vector<pair<string,bool> > > graph;
 
   for(int i = 0; i < (int)rows ;i++ ){
-    vector<pair<string,bool> > vec;
+    //vector<pair<string,bool> > vec;
     for(int j = 0; j< (int)cols ; j++ ){
+      vector<pair<string,bool> > vec ;
+      vec.clear();
 
       vec.push_back(std::make_pair(diceArray[i][j], false));
 
@@ -52,13 +54,16 @@ void BogglePlayer::setBoard(unsigned int rows, unsigned int cols,
       graph.push_back(vec);
 
     }
-    
-  }
+  }/*
   vector< vector<pair<string,bool> > >::iterator vit = graph.begin();
   vector< vector<pair<string,bool> > >::iterator ven = graph.end();
-  for(int i=0, j=0; vit != ven; vit++, i++, j++ ){
-    cout <<"the value of the string is " << vit[i][j].first << endl; 
-  }
+  for(;vit != ven; vit++){
+    vector<pair<string,bool> >::iterator vit2 = (*vit).begin();
+  vector<pair<string,bool> >::iterator ven2 = (*vit).end();
+    for(; vit2!=ven2; vit2++){
+      cout <<"the value of the string is " << (*vit2).first << endl; 
+    }
+  }*/
   
 } 
 
