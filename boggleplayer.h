@@ -15,6 +15,8 @@ using std::vector;
 class BogglePlayer: public IBogglePlayer{
 
 public:
+  Trie *lex; 
+  vector< vector<pair<string,int> > > graph;
   void buildLexicon(const vector<string>& word_list);
   void setBoard(unsigned int rows, unsigned int cols, string** diceArray);
   bool getAllValidWords(unsigned int minimum_word_length,
@@ -26,7 +28,9 @@ public:
 
 
 private:
-
+vector<int> goodpaths; 
+vector<int> rFindBoard(int index, string word);
+int computeIndex(int i, int j, int width);
 };
 #endif // BOGGLEPLAYER_H
 

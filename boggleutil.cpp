@@ -75,7 +75,13 @@ bool Trie::search(string word){
     return false; 
 
   TrieNode *current = root; 
+  if(word.size()<3)
+    return false; 
 
+  for(int i=0; i< word.size(); i++){
+    if((int)word[i]<65 || (int)word[i]>90)
+    word[i]=tolower(word[i]); 
+  }
   for(int i=0; i < (int)word.size(); i++){
 
      if((int)word[i]<97 || (int)word[i]>122)

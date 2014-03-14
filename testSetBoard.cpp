@@ -99,12 +99,12 @@ int main() {
   boggle4->buildLexicon(lex4);
   boggle5->buildLexicon(lex5);
 
-  boggle0->setBoard(1, 4, board);
-  boggle1->setBoard(4, 1, Aboard);
+ // boggle0->setBoard(1, 4, board);
+ // boggle1->setBoard(4, 1, Aboard);
   boggle2->setBoard(3, 2, Bboard);
-  boggle3->setBoard(2, 3, Cboard);
-  boggle4->setBoard(4, 4, Dboard);
-  boggle5->setBoard(2, 2, Eboard);
+ // boggle3->setBoard(2, 3, Cboard);
+ // boggle4->setBoard(4, 4, Dboard);
+ // boggle5->setBoard(2, 2, Eboard);
 
   //all tests pass 
   cout << "OK." << endl;
